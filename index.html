@@ -3,75 +3,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca Digital</title>
+
+  <title>Biblioteca Digital | Sistema de Gestión</title>
+
+  <meta
+    name="description"
+    content="Sistema de gestión de biblioteca para administrar usuarios, libros y préstamos."
+  >
+
   <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
-  <!-- Navegación -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <span class="logo-icon">📚</span>
-        <div>
-          <h1>Biblioteca Digital</h1>
-          <p class="tagline">Leer es soñar con los ojos abiertos</p>
-        </div>
-      </div>
-      <div class="nav-menu">
-        <button class="nav-btn" onclick="irA('inicio')">🏠 Inicio</button>
-        <button class="nav-btn" onclick="irA('usuarios')">👥 Usuarios</button>
-        <button class="nav-btn" onclick="irA('libros')">📚 Libros</button>
-        <button class="nav-btn" onclick="irA('prestamos')">📋 Préstamos</button>
-        <button class="nav-btn" onclick="irA('reportes')">📊 Reportes</button>
-        <button class="nav-btn" onclick="irA('admin')">👤 Administrador</button>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Contenedor principal -->
-  <main class="container">
-    <!-- SECCIÓN: Inicio (Dashboard) -->
-    <section id="inicio" class="seccion activa">
-      <div class="hero">
-        <div class="hero-contenido">
-          <h2>Bienvenido al sistema de Biblioteca</h2>
-          <p>Gestiona usuarios, libros y préstamos de manera fácil, rápida y segura.</p>
+<body>
+
+  <!-- =========================
+       BARRA DE NAVEGACIÓN
+  ========================== -->
+  <header class="header">
+    <nav class="navbar">
+
+      <div class="nav-logo">
+        <div class="logo-icon">📚</div>
+
+        <div class="logo-texto">
+          <h1>Biblioteca Digital</h1>
+          <span>Panel de administración</span>
         </div>
       </div>
+
+      <div class="nav-menu">
+        <button class="nav-btn activo" onclick="irA('inicio')">
+          <span>🏠</span>
+          Inicio
+        </button>
+
+        <button class="nav-btn" onclick="irA('usuarios')">
+          <span>👥</span>
+          Usuarios
+        </button>
+
+        <button class="nav-btn" onclick="irA('libros')">
+          <span>📚</span>
+          Libros
+        </button>
+
+        <button class="nav-btn" onclick="irA('prestamos')">
+          <span>📋</span>
+          Préstamos
+        </button>
+
+        <button class="nav-btn" onclick="irA('reportes')">
+          <span>📊</span>
+          Reportes
+        </button>
+
+        <button class="nav-btn admin-btn" onclick="irA('admin')">
+          <span>👤</span>
+          Administrador
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       CONTENIDO
+  ========================== -->
+  <main class="container">
+
+    <!-- =========================
+         INICIO
+    ========================== -->
+    <section id="inicio" class="seccion activa">
+
+      <div class="hero">
+
+        <div class="hero-contenido">
+
+          <span class="hero-etiqueta">
+            📖 Sistema Bibliotecario
+          </span>
+
+          <h2>
+            Bienvenido a tu
+            <span>Biblioteca Digital</span>
+          </h2>
+
+          <p>
+            Administra usuarios, libros y préstamos desde una plataforma
+            sencilla, moderna y organizada.
+          </p>
+
+          <div class="hero-acciones">
+
+            <button
+              class="btn-primario"
+              onclick="irA('libros')"
+            >
+              📚 Ver biblioteca
+            </button>
+
+            <button
+              class="btn-secundario"
+              onclick="abrirFormularioPrestamo()"
+            >
+              + Nuevo préstamo
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="hero-ilustracion">
+          <div class="libro-flotante">📚</div>
+        </div>
+
+      </div>
+
+
+      <!-- ESTADÍSTICAS -->
+
+      <div class="seccion-header">
+        <div>
+          <span class="subtitulo">Resumen general</span>
+          <h2>Panel principal</h2>
+        </div>
+      </div>
+
 
       <div class="estadisticas">
-        <div class="stat-card">
-          <div class="stat-icon">👤</div>
-          <div class="stat-contenido">
-            <h3>Usuarios registrados</h3>
-            <p id="total-usuarios" class="stat-numero">0</p>
-            <a href="#" onclick="irA('usuarios'); return false;">Ver todos →</a>
+
+        <article class="stat-card">
+
+          <div class="stat-icon usuarios-icon">
+            👥
           </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">📚</div>
+
           <div class="stat-contenido">
-            <h3>Libros disponibles</h3>
-            <p id="total-libros" class="stat-numero">0</p>
-            <a href="#" onclick="irA('libros'); return false;">Ver todos →</a>
+            <span class="stat-label">
+              Usuarios registrados
+            </span>
+
+            <p
+              id="total-usuarios"
+              class="stat-numero"
+            >
+              0
+            </p>
+
+            <a
+              href="#"
+              onclick="irA('usuarios'); return false;"
+            >
+              Ver usuarios
+              <span>→</span>
+            </a>
+
           </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">📋</div>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <div class="stat-icon libros-icon">
+            📚
+          </div>
+
           <div class="stat-contenido">
-            <h3>Préstamos activos</h3>
-            <p id="total-prestamos" class="stat-numero">0</p>
-            <a href="#" onclick="irA('prestamos'); return false;">Ver todos →</a>
+
+            <span class="stat-label">
+              Libros disponibles
+            </span>
+
+            <p
+              id="total-libros"
+              class="stat-numero"
+            >
+              0
+            </p>
+
+            <a
+              href="#"
+              onclick="irA('libros'); return false;"
+            >
+              Ver libros
+              <span>→</span>
+            </a>
+
           </div>
-        </div>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <div class="stat-icon prestamos-icon">
+            📋
+          </div>
+
+          <div class="stat-contenido">
+
+            <span class="stat-label">
+              Préstamos activos
+            </span>
+
+            <p
+              id="total-prestamos"
+              class="stat-numero"
+            >
+              0
+            </p>
+
+            <a
+              href="#"
+              onclick="irA('prestamos'); return false;"
+            >
+              Ver préstamos
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
       </div>
 
-      <h3 class="seccion-titulo">Libros destacados</h3>
-      <div id="libros-destacados" class="libros-grid"></div>
 
-      <h3 class="seccion-titulo">Últimos préstamos</h3>
+      <!-- LIBROS DESTACADOS -->
+
+      <div class="seccion-header">
+
+        <div>
+          <span class="subtitulo">
+            Recomendaciones
+          </span>
+
+          <h2>
+            Libros destacados
+          </h2>
+        </div>
+
+        <button
+          class="btn-outline"
+          onclick="irA('libros')"
+        >
+          Ver todos →
+        </button>
+
+      </div>
+
+
+      <div
+        id="libros-destacados"
+        class="libros-grid"
+      ></div>
+
+
+      <!-- ÚLTIMOS PRÉSTAMOS -->
+
+      <div class="seccion-header">
+
+        <div>
+          <span class="subtitulo">
+            Actividad reciente
+          </span>
+
+          <h2>
+            Últimos préstamos
+          </h2>
+        </div>
+
+      </div>
+
+
       <div class="tabla-container">
-        <table class="tabla" id="tabla-ultimos-prestamos">
+
+        <table
+          class="tabla"
+          id="tabla-ultimos-prestamos"
+        >
+
           <thead>
             <tr>
               <th>Fecha</th>
@@ -80,116 +293,542 @@
               <th>Estado</th>
             </tr>
           </thead>
+
           <tbody></tbody>
+
         </table>
+
       </div>
+
     </section>
 
-    <!-- SECCIÓN: Usuarios -->
-    <section id="usuarios" class="seccion">
-      <h2>Gestión de Usuarios</h2>
-      <div class="crud-container">
-        <button class="btn-primario" onclick="abrirFormularioUsuario()">+ Nuevo Usuario</button>
-        <input type="text" id="buscar-usuarios" placeholder="Buscar por nombre o cédula" class="input-busqueda">
+
+    <!-- =========================
+         USUARIOS
+    ========================== -->
+
+    <section
+      id="usuarios"
+      class="seccion"
+    >
+
+      <div class="pagina-header">
+
+        <div>
+          <span class="subtitulo">
+            Administración
+          </span>
+
+          <h2>
+            Gestión de Usuarios
+          </h2>
+
+          <p>
+            Registra, consulta, modifica y elimina los usuarios
+            de la biblioteca.
+          </p>
+        </div>
+
+        <button
+          class="btn-primario"
+          onclick="abrirFormularioUsuario()"
+        >
+          + Nuevo usuario
+        </button>
+
       </div>
-      <div class="tabla-container">
-        <table class="tabla" id="tabla-usuarios">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Cédula</th>
-              <th>Teléfono</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+
+
+      <div class="panel">
+
+        <div class="crud-container">
+
+          <div class="buscador">
+
+            <span>🔍</span>
+
+            <input
+              type="text"
+              id="buscar-usuarios"
+              placeholder="Buscar por nombre o cédula..."
+              class="input-busqueda"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="tabla-container">
+
+          <table
+            class="tabla"
+            id="tabla-usuarios"
+          >
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+
+          </table>
+
+        </div>
+
       </div>
+
     </section>
 
-    <!-- SECCIÓN: Libros -->
-    <section id="libros" class="seccion">
-      <h2>Gestión de Libros</h2>
-      <div class="crud-container">
-        <button class="btn-primario" onclick="abrirFormularioLibro()">+ Nuevo Libro</button>
-        <input type="text" id="buscar-libros" placeholder="Buscar por título, autor o código" class="input-busqueda">
+
+    <!-- =========================
+         LIBROS
+    ========================== -->
+
+    <section
+      id="libros"
+      class="seccion"
+    >
+
+      <div class="pagina-header">
+
+        <div>
+          <span class="subtitulo">
+            Catálogo
+          </span>
+
+          <h2>
+            Gestión de Libros
+          </h2>
+
+          <p>
+            Administra el catálogo completo de libros
+            disponibles en la biblioteca.
+          </p>
+        </div>
+
+        <button
+          class="btn-primario"
+          onclick="abrirFormularioLibro()"
+        >
+          + Nuevo libro
+        </button>
+
       </div>
-      <div id="libros-lista" class="libros-grid"></div>
+
+
+      <div class="panel">
+
+        <div class="crud-container">
+
+          <div class="buscador">
+
+            <span>🔍</span>
+
+            <input
+              type="text"
+              id="buscar-libros"
+              placeholder="Buscar por título, autor o código..."
+              class="input-busqueda"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="libros-lista"
+          class="libros-grid"
+        ></div>
+
+      </div>
+
     </section>
 
-    <!-- SECCIÓN: Préstamos -->
-    <section id="prestamos" class="seccion">
-      <h2>Gestión de Préstamos</h2>
-      <div class="crud-container">
-        <button class="btn-primario" onclick="abrirFormularioPrestamo()">+ Nuevo Préstamo</button>
-        <select id="filtro-estado" class="input-busqueda" onchange="cargarPrestamos()">
-          <option value="">Todos los estados</option>
-          <option value="Activo">Activos</option>
-          <option value="Devuelto">Devueltos</option>
-        </select>
+
+    <!-- =========================
+         PRÉSTAMOS
+    ========================== -->
+
+    <section
+      id="prestamos"
+      class="seccion"
+    >
+
+      <div class="pagina-header">
+
+        <div>
+
+          <span class="subtitulo">
+            Circulación
+          </span>
+
+          <h2>
+            Gestión de Préstamos
+          </h2>
+
+          <p>
+            Controla las entregas y devoluciones de libros.
+          </p>
+
+        </div>
+
+        <button
+          class="btn-primario"
+          onclick="abrirFormularioPrestamo()"
+        >
+          + Nuevo préstamo
+        </button>
+
       </div>
-      <div class="tabla-container">
-        <table class="tabla" id="tabla-prestamos">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Usuario</th>
-              <th>Libro</th>
-              <th>Fecha Préstamo</th>
-              <th>Fecha Devolución</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+
+
+      <div class="panel">
+
+        <div class="crud-container">
+
+          <select
+            id="filtro-estado"
+            class="select-moderno"
+            onchange="cargarPrestamos()"
+          >
+
+            <option value="">
+              Todos los estados
+            </option>
+
+            <option value="Activo">
+              Préstamos activos
+            </option>
+
+            <option value="Devuelto">
+              Libros devueltos
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="tabla-container">
+
+          <table
+            class="tabla"
+            id="tabla-prestamos"
+          >
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Libro</th>
+                <th>Fecha préstamo</th>
+                <th>Fecha devolución</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+
+          </table>
+
+        </div>
+
       </div>
+
     </section>
 
-    <!-- SECCIÓN: Reportes -->
-    <section id="reportes" class="seccion">
-      <h2>Reportes</h2>
+
+    <!-- =========================
+         REPORTES
+    ========================== -->
+
+    <section
+      id="reportes"
+      class="seccion"
+    >
+
+      <div class="pagina-header">
+
+        <div>
+
+          <span class="subtitulo">
+            Estadísticas
+          </span>
+
+          <h2>
+            Reportes
+          </h2>
+
+          <p>
+            Consulta información importante sobre el
+            funcionamiento de la biblioteca.
+          </p>
+
+        </div>
+
+      </div>
+
+
       <div class="reporte-container">
-        <div class="reporte-card">
-          <h3>Libro más prestado</h3>
-          <p id="libro-mas-prestado">Cargando...</p>
-        </div>
-        <div class="reporte-card">
-          <h3>Usuario con más préstamos</h3>
-          <p id="usuario-mas-prestamos">Cargando...</p>
-        </div>
-        <div class="reporte-card">
-          <h3>Total de transacciones</h3>
-          <p id="total-transacciones">Cargando...</p>
-        </div>
+
+        <article class="reporte-card">
+
+          <div class="reporte-icon">
+            🏆
+          </div>
+
+          <span>
+            Libro más solicitado
+          </span>
+
+          <h3>
+            Libro más prestado
+          </h3>
+
+          <p id="libro-mas-prestado">
+            Cargando...
+          </p>
+
+        </article>
+
+
+        <article class="reporte-card">
+
+          <div class="reporte-icon">
+            👑
+          </div>
+
+          <span>
+            Usuario destacado
+          </span>
+
+          <h3>
+            Usuario con más préstamos
+          </h3>
+
+          <p id="usuario-mas-prestamos">
+            Cargando...
+          </p>
+
+        </article>
+
+
+        <article class="reporte-card">
+
+          <div class="reporte-icon">
+            📊
+          </div>
+
+          <span>
+            Actividad total
+          </span>
+
+          <h3>
+            Total de transacciones
+          </h3>
+
+          <p id="total-transacciones">
+            Cargando...
+          </p>
+
+        </article>
+
       </div>
+
     </section>
+
+
+    <!-- =========================
+         ADMINISTRADOR
+    ========================== -->
+
+    <section
+      id="admin"
+      class="seccion"
+    >
+
+      <div class="pagina-header">
+
+        <div>
+
+          <span class="subtitulo">
+            Cuenta
+          </span>
+
+          <h2>
+            Administrador
+          </h2>
+
+          <p>
+            Información general de la cuenta administrativa.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="admin-card">
+
+        <div class="admin-avatar">
+          👤
+        </div>
+
+        <div>
+
+          <span class="badge-admin">
+            Administrador
+          </span>
+
+          <h2>
+            Biblioteca Digital
+          </h2>
+
+          <p>
+            Acceso completo al sistema de gestión bibliotecaria.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
-  <!-- Modal para formularios -->
-  <div id="modal" class="modal" style="display: none;">
+
+  <!-- =========================
+       MODAL FORMULARIOS
+  ========================== -->
+
+  <div
+    id="modal"
+    class="modal"
+    style="display: none;"
+  >
+
     <div class="modal-contenido">
-      <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
-      <h2 id="modal-titulo">Formulario</h2>
-      <form id="formulario" onsubmit="guardarDatos(event)">
+
+      <button
+        class="modal-cerrar"
+        onclick="cerrarModal()"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+
+
+      <div class="modal-header">
+
+        <span class="modal-icon">
+          📚
+        </span>
+
+        <h2 id="modal-titulo">
+          Formulario
+        </h2>
+
+      </div>
+
+
+      <form
+        id="formulario"
+        onsubmit="guardarDatos(event)"
+      >
+
         <div id="campos-formulario"></div>
+
+
         <div class="modal-acciones">
-          <button type="submit" class="btn-primario">Guardar</button>
-          <button type="button" class="btn-secundario" onclick="cerrarModal()">Cancelar</button>
+
+          <button
+            type="button"
+            class="btn-secundario"
+            onclick="cerrarModal()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-primario"
+          >
+            💾 Guardar
+          </button>
+
         </div>
+
       </form>
+
     </div>
+
   </div>
 
-  <!-- Modal de detalles de libro -->
-  <div id="modal-libro" class="modal" style="display: none;">
-    <div class="modal-contenido modal-libro-contenido">
-      <button class="modal-cerrar" onclick="cerrarModalLibro()">✕</button>
+
+  <!-- =========================
+       MODAL LIBRO
+  ========================== -->
+
+  <div
+    id="modal-libro"
+    class="modal"
+    style="display: none;"
+  >
+
+    <div
+      class="modal-contenido modal-libro-contenido"
+    >
+
+      <button
+        class="modal-cerrar"
+        onclick="cerrarModalLibro()"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+
       <div id="detalles-libro"></div>
+
     </div>
+
   </div>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    <div>
+
+      <strong>
+        📚 Biblioteca Digital
+      </strong>
+
+      <p>
+        Sistema de gestión bibliotecaria
+      </p>
+
+    </div>
+
+    <span>
+      © 2026 Biblioteca Digital
+    </span>
+
+  </footer>
+
 
   <script src="js/app.js"></script>
+
 </body>
 </html>
